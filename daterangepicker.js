@@ -32,6 +32,8 @@
     var DateRangePicker = function(element, options, cb) {
 
         //default settings for options
+        this.language = options.language || 'en'
+        moment.locale(this.language);
         this.parentEl = 'body';
         this.element = $(element);
         this.startDate = moment().startOf('day');
@@ -67,6 +69,7 @@
         this.buttonClasses = 'btn btn-sm';
         this.applyButtonClasses = 'btn-primary';
         this.cancelButtonClasses = 'btn-default';
+
 
         this.locale = {
             direction: 'ltr',
@@ -1491,6 +1494,7 @@
         },
 
         updateElement: function() {
+            // debugger
             if (this.element.is('input') && this.autoUpdateInput) {
                 var newValue = this.startDate.format(this.locale.format);
                 if (!this.singleDatePicker) {
